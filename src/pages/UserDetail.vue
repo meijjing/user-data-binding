@@ -5,35 +5,15 @@
 
         <q-list separator>
 
-            <q-item clickable v-ripple class="q-py-lg">
-                <q-item-section>Email: </q-item-section>
-                <q-item-section>{{ email }}</q-item-section>
+            <q-item :key="index" v-for="(item, name, index) in value" clickable v-ripple class="q-py-lg">
+                <q-item-section>{{ name }}: </q-item-section>
+                <q-item-section>{{ item }}</q-item-section>
             </q-item>
 
-            <q-item clickable v-ripple class="q-py-lg">
-                <q-item-section>Password: </q-item-section>
-                <q-item-section>{{ password }}</q-item-section>
-            </q-item>
-
-            <q-item clickable v-ripple class="q-py-lg">
-                <q-item-section>Name: </q-item-section>
-                <q-item-section>{{ name }}</q-item-section>
-            </q-item>
-
-            <q-item clickable v-ripple class="q-py-lg">
-                <q-item-section>Address: </q-item-section>
-                <q-item-section>{{ address }}</q-item-section>
-            </q-item>
-
-            <q-item clickable v-ripple class="q-py-lg">
-                <q-item-section>Phone: </q-item-section>
-                <q-item-section>{{ phone }}</q-item-section>
-            </q-item>
-
-            <q-item clickable v-ripple class="q-py-lg">
+            <!-- <q-item clickable v-ripple class="q-py-lg">
                 <q-item-section>hasDog: </q-item-section>
                 <q-item-section>{{ hasDogKr }}</q-item-section>
-            </q-item>
+            </q-item> -->
 
         </q-list>     
 
@@ -44,10 +24,27 @@
 
 export default {
     name: 'User Detail',
-    props: ['email', 'password', 'name', 'address', 'phone', 'hasDog'],
+    // props: ['email', 'password', 'name', 'address', 'phone', 'hasDog'],
+    props: {
+        value: {
+            email: '',
+            password: '',
+            name: '',
+            address: '',
+            phone: '',
+            hasDog: null
+        }
+    },
+    created() {
+        console.log(this.value);
+    },
+    methods: {
+
+    },
+
     computed: {
         hasDogKr() {
-            return this.hasDog === true ? '있음' : '없음'
+            return this.value.hasDog === true ? '있음' : '없음'
         }
     }
 }
